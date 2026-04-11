@@ -1,3 +1,3 @@
-#webpack-template
+# ToDo List App
+## Along the Odin-Journey
 
-Use Live Server with ``` npx webpack serve ```

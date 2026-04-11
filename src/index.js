@@ -1,6 +1,6 @@
 import './style.css';
 import { createTask, storeTaskToDB } from "./task";
-import { renderCategories } from './render';
+import { renderCategories, renderTasks } from './render';
 import { createCategory, storeCategoryToDB, getCategories } from './categories';
 
 
@@ -15,4 +15,4 @@ const testTask = createTask("Einkaufen gehen", "Meine Beschreibung", Date("2026-
 
 // storeTaskToDB(testTask, "Standard");
 renderCategories();
-
+renderTasks("Standard");

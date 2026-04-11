@@ -2,6 +2,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #dededd;
+
 }
 
 h1 {
@@ -13,7 +15,7 @@ h1 {
     width: 1200px;
     display: flex;
     border-radius: 16px;
-    background-color: darkgray;
+    background-color: #252522;
 }
 
 .sidebar {
@@ -23,25 +25,27 @@ h1 {
     height: 784px; 
     width: 234px;
     margin: 8px;
-    background-color: gray;
+    background-color: #1e1e1c;
     border-radius: 8px;
 }
 
 .sidebarCategory {
     height: 30px;
-    background-color: white;
 
 }
 
 .navTop {
     height: 32px;
     width: 946;
-    background-color: white;
     margin: 8px;
+}
+
+.categoryHeadline{
+    color: #0a84ff;
+    font-size: 32px;
 }
 .taskList {
     height: 744px;
     width: 946px;
     margin: 8px;
-    background-color: black;
 }

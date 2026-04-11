@@ -15,5 +15,5 @@ export function storeCategoryToDB (category){
 }
 
 export function getCategories () {
-    return JSON.parse(sessionStorage.getItem("categories"));
+    return JSON.parse(sessionStorage.getItem("categories")) || [];
 }

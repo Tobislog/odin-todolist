@@ -17,6 +17,9 @@ h1 {
 }
 
 .sidebar {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
     height: 784px; 
     width: 234px;
     margin: 8px;
@@ -25,7 +28,9 @@ h1 {
 }
 
 .sidebarCategory {
-    
+    height: 30px;
+    background-color: white;
+
 }
 
 .navTop {

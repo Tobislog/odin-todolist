@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     color: #dededd;
-
+    font-family: "Comfortaa", sans-serif;
 }
 
 h1 {
@@ -21,12 +23,13 @@ h1 {
 .sidebar {
     display: flex;
     justify-content: flex-start;
-    flex-direction: row;
+    flex-direction: column;
     height: 784px; 
     width: 234px;
     margin: 8px;
     background-color: #1e1e1c;
     border-radius: 8px;
+    font-size: 24px;
 }
 
 .sidebarCategory {
@@ -42,10 +45,22 @@ h1 {
 
 .categoryHeadline{
     color: #0a84ff;
-    font-size: 32px;
+    font-size: 40px;
+    margin-bottom: 16px;
 }
 .taskList {
     height: 744px;
     width: 946px;
     margin: 8px;
+}
+
+.taskLine {
+    display: flex;
+    align-items: center;
+    height: 32px;
+
+}
+
+.taskCheckbox {
+    margin-right: 16px;
 }

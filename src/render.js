@@ -35,10 +35,25 @@ export function renderTasks (category) {
     //Render tasks
 
     targetedCategory.tasks.forEach( task => {
-        const $newTask = document.createElement("div");
-        $newTask.setAttribute("class", "task");
-        $newTask.textContent = task.title;
-        $taskList.appendChild($newTask);
+
+        //new Task Wrapper
+        const $newTaskLine = document.createElement("div");
+        $newTaskLine.setAttribute("class", "taskLine");
+        
+        //adding Checkbox
+        const $checkBox = document.createElement("input");
+        $checkBox.type = "checkbox";
+        $checkBox.classList = "taskCheckbox"
+
+        //adding Title
+        const $taskTitle = document.createElement("div");
+        $taskTitle.setAttribute("class", "taskTitle");
+        $taskTitle.textContent = task.title;
+
+        //add Elements to DOM
+        $newTaskLine.appendChild($checkBox);
+        $newTaskLine.appendChild($taskTitle);
+        $taskList.appendChild($newTaskLine);
     });
     
 }

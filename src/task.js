@@ -1,3 +1,4 @@
+import { createCategory, storeCategoryToDB } from "./categories";
 
 export function createTask(title, description, dueDate, priority) {
     return {
@@ -11,17 +12,16 @@ export function createTask(title, description, dueDate, priority) {
 
 export function storeTaskToDB(task, category) {
     //Storing to LocalStorage for Development
-    const tasks = JSON.parse(sessionStorage.getItem("tasks")) || [];
-    tasks.push(task);
+    const categories = JSON.parse(sessionStorage.getItem("categories")) || [];
+    categories.forEach(cat => {
+        if (cat.name == category) {
+            cat.tasks.push(task);
+            sessionStorage.setItem("categories", JSON.stringify(categories))
+        }
 
-    sessionStorage.setItem("tasks", JSON.stringify(tasks));
+        else {
+            console.log("no Category found with this name!");
+        }
+    });
 
-}
-
-export function getTasks() {
-    return JSON.parse(sessionStorage.getItem("tasks")) || [];
-}
-
-export function debugTasks() {
-    console.log(getTasks());
 }

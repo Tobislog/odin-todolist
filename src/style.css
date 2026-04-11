@@ -1,3 +1,42 @@
-p {
-    color: green;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin: 0px;
+    padding: 0px;
+}
+.app {
+    height: 800px;
+    width: 1200px;
+    display: flex;
+    border-radius: 16px;
+    background-color: darkgray;
+}
+
+.sidebar {
+    height: 784px; 
+    width: 234px;
+    margin: 8px;
+    background-color: gray;
+    border-radius: 8px;
+}
+
+.sidebarCategory {
+    
+}
+
+.navTop {
+    height: 32px;
+    width: 946;
+    background-color: white;
+    margin: 8px;
+}
+.taskList {
+    height: 744px;
+    width: 946px;
+    margin: 8px;
+    background-color: black;
 }

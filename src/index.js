@@ -1,5 +1,5 @@
 import './style.css';
-import { createTask, storeTaskToDB } from "./task";
+import { createTask, storeTaskToDB, removeTaskFromDB } from "./task";
 import { renderCategories, renderTasks } from './render';
 import { createCategory, storeCategoryToDB, getCategories } from './categories';
 
@@ -8,10 +8,18 @@ const currentCategory = "Standard";
 
 //Eventlistener
 
-$appWrapper.addEventListener("click", (event) => {
+$appWrapper.addEventListener("change", (event) => {
+
+    //Ticking the Checkbox of Task removes it
     if (event.target.matches(".taskCheckbox")) {
-        
+        removeTaskFromDB(event.target.id);
+        console.log("event fired!" + event.target.id);
+        renderTasks(currentCategory);
     }
+});
+
+$appWrapper.addEventListener("click", (event) => {
+   
 });
 
 $appWrapper.addEventListener("keydown", (event) => {
@@ -37,7 +45,7 @@ if (!categories.find(cat => cat.name === "Standard")) {
     storeCategoryToDB(categoryStandard);
 };
 
-
+console.log($appWrapper.contains(document.querySelector(".taskCheckbox")));
 
 const testTask = createTask("Einkaufen gehen", "Meine Beschreibung", Date("2026-06-11T11:29:00"), 2);
 const neuerTask = createTask("Fernsehen", "Netflix schauen", Date("2026-04-11T20:57:00", 1));

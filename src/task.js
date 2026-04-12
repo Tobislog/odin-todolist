@@ -16,7 +16,7 @@ export function storeTaskToDB(task, category) {
     categories.forEach(cat => {
         if (cat.name == category) {
             cat.tasks.push(task);
-            sessionStorage.setItem("categories", JSON.stringify(categories))
+            sessionStorage.setItem("categories", JSON.stringify(categories));
         }
 
         else {
@@ -25,10 +25,13 @@ export function storeTaskToDB(task, category) {
     });
 };
 
-export function removeTaskFromDB(taskId) {
+export function removeTaskFromDB (taskId) {
     //removing Task from SessionStorage
-    const categories = JSON.parse(sessionStorage.getItem("cagegories")) || [];
+    console.log(taskId);
+    const categories = JSON.parse(sessionStorage.getItem("categories")) || [];
     categories.forEach(cat => {
         cat.tasks = cat.tasks.filter(task => task.id !== taskId);
-    })
+        console.log(taskId + " removed!")
+    });
+    sessionStorage.setItem("categories", JSON.stringify(categories));
 }

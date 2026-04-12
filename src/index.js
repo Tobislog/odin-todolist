@@ -16,7 +16,8 @@ $appWrapper.addEventListener("keydown", (event) => {
     if (event.target.matches(".newTaskInput") && event.key === "Enter") {
             const neuerTask = createTask(event.target.value, "", "", 1);
             storeTaskToDB(neuerTask, currentCategory);
-            renderTasks();
+            renderTasks(currentCategory);
+            document.querySelector(".newTaskInput").focus();
         
     }
 });

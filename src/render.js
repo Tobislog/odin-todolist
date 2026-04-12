@@ -44,6 +44,7 @@ export function renderTasks (category) {
         //adding Checkbox
         const $checkBox = document.createElement("input");
         $checkBox.type = "checkbox";
+        $checkBox.id = task.id;
         $checkBox.classList = "taskCheckbox"
 
         //adding Title

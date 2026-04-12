@@ -22,6 +22,7 @@ export function renderTasks (category) {
     $taskList.innerHTML = "";
 
     //Find targeted Category
+
     const categories = getCategories();
     const targetedCategory = categories.find(cat => cat.name === category);
 
@@ -54,6 +55,25 @@ export function renderTasks (category) {
         $newTaskLine.appendChild($checkBox);
         $newTaskLine.appendChild($taskTitle);
         $taskList.appendChild($newTaskLine);
+
+
     });
+
+    //Render new Task Input
+
+    const $newInputLine = document.createElement("div");
+    $newInputLine.classList = "inputLine";
+
+    const $newCheckbox = document.createElement("input");
+    $newCheckbox.type = "checkbox";
+    $newCheckbox.classList = "taskCheckbox";
+
+    const $newInput = document.createElement("input");
+    $newInput.type = "text";
+    $newInput.classList = "newTaskInput";
+
+    $newInputLine.appendChild($newCheckbox);
+    $newInputLine.appendChild($newInput);
+    $taskList.appendChild($newInputLine);
     
 }

@@ -61,6 +61,12 @@ h1 {
 
 }
 
+.inputLine {
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
 .taskCheckbox {
     margin-right: 16px;
 }

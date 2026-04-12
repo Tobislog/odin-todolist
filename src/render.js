@@ -29,8 +29,8 @@ export function renderTasks (category) {
     //Render Category Name as Headline
 
     const headline = document.createElement("div");
-    headline.textContent = targetedCategory.name;
-    headline.setAttribute("class", "categoryHeadline");
+    headline.textContent = category;
+    headline.classList = "categoryHeadline";
     $taskList.appendChild(headline);
     
     //Render tasks
@@ -70,6 +70,7 @@ export function renderTasks (category) {
 
     const $newInput = document.createElement("input");
     $newInput.type = "text";
+    $newInput.id = "newTaskInput"
     $newInput.classList = "newTaskInput";
 
     $newInputLine.appendChild($newCheckbox);

@@ -70,3 +70,8 @@ h1 {
 .taskCheckbox {
     margin-right: 16px;
 }
+
+.newTaskInput {
+    width: 700px;
+    font-family: "Comfortaa", sans-serif;
+}

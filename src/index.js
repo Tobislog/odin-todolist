@@ -9,17 +9,21 @@ const currentCategory = "Standard";
 //Eventlistener
 
 $appWrapper.addEventListener("click", (event) => {
-
+    if (event.target.matches(".taskCheckbox")) {
+        
+    }
 });
 
 $appWrapper.addEventListener("keydown", (event) => {
+
+    //Enter to store new Task
     if (event.target.matches(".newTaskInput") && event.key === "Enter") {
             const neuerTask = createTask(event.target.value, "", "", 1);
             storeTaskToDB(neuerTask, currentCategory);
             renderTasks(currentCategory);
-            document.querySelector(".newTaskInput").focus();
-        
+            document.querySelector(".newTaskInput").focus(); 
     }
+
 });
 
 

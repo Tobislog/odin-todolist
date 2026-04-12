@@ -11,7 +11,7 @@ export function createTask(title, description, dueDate, priority) {
 };
 
 export function storeTaskToDB(task, category) {
-    //Storing to LocalStorage for Development
+    //Storing to SessionStorage for Development
     const categories = JSON.parse(sessionStorage.getItem("categories")) || [];
     categories.forEach(cat => {
         if (cat.name == category) {
@@ -23,5 +23,12 @@ export function storeTaskToDB(task, category) {
             console.log("no Category found with this name!");
         }
     });
+};
 
+export function removeTaskFromDB(taskId) {
+    //removing Task from SessionStorage
+    const categories = JSON.parse(sessionStorage.getItem("cagegories")) || [];
+    categories.forEach(cat => {
+        cat.tasks = cat.tasks.filter(task => task.id !== taskId);
+    })
 }

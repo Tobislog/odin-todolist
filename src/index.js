@@ -54,7 +54,7 @@ $appWrapper.addEventListener("click", (event) => {
     //Category Options
 
     if (event.target.matches(".categoryOptionButton")) {
-        console.log("Options to make!");
+        document.querySelector("#categoryOptionsModal").showModal();
     }
 });
 

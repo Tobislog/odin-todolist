@@ -12,6 +12,14 @@ h1 {
     margin: 0px;
     padding: 8px;
 }
+
+#categoryOptionsModal {
+    border-radius: 16px;
+    background-color: #33332f;
+    border: none;
+    color: #dededd;
+}
+
 .app {
     height: 800px;
     width: 1200px;

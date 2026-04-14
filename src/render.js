@@ -49,7 +49,6 @@ export function renderCurrentCategoryOptions () {
         console.error("Sidebar Element nicht gefunden!");
         return;
     }
-    console.log($sidebarElement);
     //create Option-Div if not created yet
     if (!$sidebarElement.querySelector(".sidebarCategoryOptions")) {
         //Div-Wrapper
@@ -57,7 +56,6 @@ export function renderCurrentCategoryOptions () {
         $categoryOptions.classList.add("sidebarCategoryOptions");
         
         //remove Button, except for "Standard"-Category
-        console.log($sidebarElement.querySelector(".sidebarCategoryName").textContent)
         if ($sidebarElement.querySelector(".sidebarCategoryName").textContent !== "Standard") {
             const $removeCategoryButton = document.createElement("div");
             $removeCategoryButton.classList.add("removeCategoryButton");

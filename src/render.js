@@ -14,11 +14,17 @@ export function renderCategories () {
         const $categoryElement = document.createElement("div");
         $categoryElement.classList.add("sidebarCategory");
         if (getCurrentCategory() === cat.name) {
-            $categoryElement.classList.add("current")
+            $categoryElement.classList.add("current");
         }
-        $categoryElement.textContent = cat.name;
+        const $categoryElementName = document.createElement("div");
+        $categoryElementName.classList.add("sidebarCategoryName");
+        $categoryElementName.textContent = cat.name;
+        $categoryElement.appendChild($categoryElementName);
         $categoryList.appendChild($categoryElement);
+        
+
     });
+    renderCurrentCategoryOptions();
 }
 
 export function renderNewCategoryInput () {
@@ -31,6 +37,32 @@ export function renderNewCategoryInput () {
 
     $categoryList.appendChild($newCategoryWrapper);
     
+}
+
+export function renderCurrentCategoryOptions () {
+    //remove all previous option-Divs
+    document.querySelector(".categoryList").querySelectorAll(".sidebarCategoryOptions").forEach(el => el.remove());
+    //get html-Element of current Category
+    const $sidebarElement = Array.from(document.querySelectorAll(".sidebarCategoryName")).find(el => el.textContent.trim() === getCurrentCategory())?.parentElement;
+    if (!$sidebarElement) {
+        console.error("Sidebar Element nicht gefunden!");
+        return;
+    }
+
+    //create Option-Div if not created yet
+    if (!$sidebarElement.querySelector(".sidebarCategoryOptions")) {
+        //Div-Wrapper
+        const $categoryOptions = document.createElement("div");
+        $categoryOptions.classList.add("sidebarCategoryOptions");
+        
+        //remove
+        const $removeCategoryButton = document.createElement("div");
+        $removeCategoryButton.classList.add("removeCategoryButton");
+        $removeCategoryButton.textContent = ""
+
+        $sidebarElement.appendChild($categoryOptions);
+    }
+
 }
 
 export function renderTasks (category) {

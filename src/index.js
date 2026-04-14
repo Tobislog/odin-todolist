@@ -1,6 +1,6 @@
 import './style.css';
 import { createTask, storeTaskToDB, removeTaskFromDB } from "./task";
-import { renderCategories, renderTasks, renderNewCategoryInput } from './render';
+import { renderCategories, renderTasks, renderNewCategoryInput, renderCurrentCategoryOptions } from './render';
 import { createCategory, storeCategoryToDB, getCategories } from './categories';
 
 //HTML-Variables
@@ -10,12 +10,6 @@ const $appWrapper = document.querySelector(".app");
 //Variables
 let currentCategory = "Standard";
 
-//Create and store default-Category and make it active
-const categoryStandard = createCategory("Standard", "Defaultbeschreibung");
-
-if (!getCategories().find(cat => cat.name === "Standard")) {
-    storeCategoryToDB(categoryStandard);
-};
 
 
 
@@ -41,12 +35,12 @@ $appWrapper.addEventListener("click", (event) => {
     };
 
     //Change current Category
-    if(event.target.matches(".sidebarCategory") && !event.target.matches(".current")) {
+    if((event.target.matches(".sidebarCategory") || event.target.matches(".sidebarCategoryName") ) && !event.target.matches(".current")) {
         currentCategory = event.target.textContent;
         renderCategories();
         renderTasks(currentCategory);
     }
-    
+
 });
 
 $appWrapper.addEventListener("keydown", (event) => {
@@ -77,9 +71,14 @@ export function setCurrentCategory(category) {
     currentCategory = categoryStandard;
 }
 
+//Create and store default-Category and make it active
+const categoryStandard = createCategory("Standard", "Defaultbeschreibung");
+
+if (!getCategories().find(cat => cat.name === "Standard")) {
+    storeCategoryToDB(categoryStandard);
+};
 
 //Rendering Page
 
 renderCategories();
 renderTasks(currentCategory);
-

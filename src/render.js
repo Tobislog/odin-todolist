@@ -1,22 +1,33 @@
 import { getCategories } from "./categories";
 //DOM Variables
-const $sidebar = document.querySelector(".sidebar");
+const $categoryList = document.querySelector(".categoryList");
 const $taskList = document.querySelector(".taskList");
 
 
 
 export function renderCategories () {
-    $sidebar.innerHTML = "";
+    $categoryList.innerHTML = "";
     const categories = getCategories();
 
     categories.forEach(cat => {
         const $categoryElement = document.createElement("div");
         $categoryElement.setAttribute("class", "sidebarCategory");
         $categoryElement.textContent = cat.name;
-        $sidebar.appendChild($categoryElement);
+        $categoryList.appendChild($categoryElement);
     });
 }
 
+export function renderNewCategoryInput () {
+    const $newCategoryWrapper = document.createElement("div");
+    $newCategoryWrapper.classList = "sidebarCategory";
+    const $newCategoryInput = document.createElement("input");
+    $newCategoryInput.type = "text";
+    $newCategoryInput.classList.add("newCategoryInput");
+    $newCategoryWrapper.appendChild($newCategoryInput);
+
+    $categoryList.appendChild($newCategoryWrapper);
+    
+}
 
 export function renderTasks (category) {
     $taskList.innerHTML = "";
@@ -79,3 +90,4 @@ export function renderTasks (category) {
     $taskList.appendChild($newInputLine);
     
 }
+

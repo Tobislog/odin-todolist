@@ -10,7 +10,7 @@ body {
 
 h1 {
     margin: 0px;
-    padding: 0px;
+    padding: 8px;
 }
 .app {
     height: 800px;
@@ -32,9 +32,40 @@ h1 {
     font-size: 24px;
 }
 
-.sidebarCategory {
-    height: 30px;
+.categoryMenu {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 9px;
+}
 
+.addCategoryButton {
+    background-color: #31312f;
+    border-radius: 16px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addCategoryButton:hover {
+    background-Color: #0a84ff;
+    cursor: pointer;
+}
+
+.sidebarCategory {
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    height: 40px;
+    background-color: #31312f;
+    border-radius: 8px;
+    margin: 8px;
+}
+
+.sidebarCategorySelected {
+    background-Color: #0a84ff;
+    color: #dededd;
 }
 
 .navTop {

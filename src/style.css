@@ -38,16 +38,6 @@ h1 {
     padding-right: 9px;
 }
 
-.addCategoryButton {
-    background-color: #31312f;
-    border-radius: 16px;
-    height: 20px;
-    width: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .addCategoryButton:hover {
     background-Color: #0a84ff;
     cursor: pointer;
@@ -55,9 +45,10 @@ h1 {
 
 .sidebarCategory {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding-left: 8px;
-    height: 40px;
+    padding: 8px;
+    min-height: 40px;
     background-color: #31312f;
     border-radius: 8px;
     margin: 8px;
@@ -67,6 +58,25 @@ h1 {
     background-Color: #0a84ff;
 }
 
+.sidebarCategoryOptions {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;    
+    align-items: flex-end;
+    gap: 5px;
+    width: 100%;
+}
+
+.removeCategoryButton, .categoryOptionButton, .addCategoryButton {
+    background-color: #31312f;
+    border-radius: 12px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 .navTop {
     height: 32px;
     width: 946;

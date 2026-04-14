@@ -13,6 +13,7 @@ export function renderCategories () {
     categories.forEach(cat => {
         const $categoryElement = document.createElement("div");
         $categoryElement.classList.add("sidebarCategory");
+        $categoryElement.dataset.id = cat.id;
         if (getCurrentCategory() === cat.name) {
             $categoryElement.classList.add("current");
         }
@@ -48,18 +49,28 @@ export function renderCurrentCategoryOptions () {
         console.error("Sidebar Element nicht gefunden!");
         return;
     }
-
+    console.log($sidebarElement);
     //create Option-Div if not created yet
     if (!$sidebarElement.querySelector(".sidebarCategoryOptions")) {
         //Div-Wrapper
         const $categoryOptions = document.createElement("div");
         $categoryOptions.classList.add("sidebarCategoryOptions");
         
-        //remove
-        const $removeCategoryButton = document.createElement("div");
-        $removeCategoryButton.classList.add("removeCategoryButton");
-        $removeCategoryButton.textContent = ""
-
+        //remove Button, except for "Standard"-Category
+        console.log($sidebarElement.querySelector(".sidebarCategoryName").textContent)
+        if ($sidebarElement.querySelector(".sidebarCategoryName").textContent !== "Standard") {
+            const $removeCategoryButton = document.createElement("div");
+            $removeCategoryButton.classList.add("removeCategoryButton");
+            $removeCategoryButton.textContent = "\u{00D7}";
+            $categoryOptions.appendChild($removeCategoryButton);
+        }
+        //optionsButton
+        const $optionButton = document.createElement("div");
+        $optionButton.classList.add("categoryOptionButton");
+        $optionButton.textContent = "\u{22EF}";
+        $categoryOptions.appendChild($optionButton);
+        
+        
         $sidebarElement.appendChild($categoryOptions);
     }
 

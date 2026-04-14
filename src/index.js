@@ -1,7 +1,7 @@
 import './style.css';
 import { createTask, storeTaskToDB, removeTaskFromDB } from "./task";
 import { renderCategories, renderTasks, renderNewCategoryInput, renderCurrentCategoryOptions } from './render';
-import { createCategory, storeCategoryToDB, getCategories } from './categories';
+import { createCategory, storeCategoryToDB, getCategories , removeCategoryFromDB} from './categories';
 
 //HTML-Variables
 const $appWrapper = document.querySelector(".app");
@@ -35,12 +35,27 @@ $appWrapper.addEventListener("click", (event) => {
     };
 
     //Change current Category
-    if((event.target.matches(".sidebarCategory") || event.target.matches(".sidebarCategoryName") ) && !event.target.matches(".current")) {
+    if ((event.target.matches(".sidebarCategory") || event.target.matches(".sidebarCategoryName") ) && !event.target.matches(".current")) {
         currentCategory = event.target.textContent;
         renderCategories();
         renderTasks(currentCategory);
     }
 
+    //Delete Category
+    if (event.target.matches(".removeCategoryButton")) {
+        
+        removeCategoryFromDB(event.target?.parentNode?.parentNode.dataset.id);
+        currentCategory = "Standard";
+        renderCategories();
+        renderTasks("Standard");
+        console.log("EL fertig")
+    }
+
+    //Category Options
+
+    if (event.target.matches(".categoryOptionButton")) {
+        console.log("Options to make!");
+    }
 });
 
 $appWrapper.addEventListener("keydown", (event) => {
@@ -71,12 +86,18 @@ export function setCurrentCategory(category) {
     currentCategory = categoryStandard;
 }
 
-//Create and store default-Category and make it active
-const categoryStandard = createCategory("Standard", "Defaultbeschreibung");
+function createStandardCategory () {
+    const categoryStandard = createCategory("Standard", "Defaultbeschreibung");
 
-if (!getCategories().find(cat => cat.name === "Standard")) {
-    storeCategoryToDB(categoryStandard);
-};
+    if (!getCategories().find(cat => cat.name === "Standard")) {
+        storeCategoryToDB(categoryStandard);
+    };
+    currentCategory = "Standard";
+}
+//initial
+
+createStandardCategory();
+
 
 //Rendering Page
 

@@ -1,4 +1,5 @@
 import { getCategories } from "./categories";
+import { getCurrentCategory, setCurrentCategory } from ".";
 //DOM Variables
 const $categoryList = document.querySelector(".categoryList");
 const $taskList = document.querySelector(".taskList");
@@ -11,7 +12,10 @@ export function renderCategories () {
 
     categories.forEach(cat => {
         const $categoryElement = document.createElement("div");
-        $categoryElement.setAttribute("class", "sidebarCategory");
+        $categoryElement.classList.add("sidebarCategory");
+        if (getCurrentCategory() === cat.name) {
+            $categoryElement.classList.add("current")
+        }
         $categoryElement.textContent = cat.name;
         $categoryList.appendChild($categoryElement);
     });

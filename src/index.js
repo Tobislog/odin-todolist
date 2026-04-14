@@ -6,15 +6,18 @@ import { createCategory, storeCategoryToDB, getCategories } from './categories';
 //HTML-Variables
 const $appWrapper = document.querySelector(".app");
 
-//Variables
-const currentCategory = "Standard";
 
-//Create and store default-Category
+//Variables
+let currentCategory = "Standard";
+
+//Create and store default-Category and make it active
 const categoryStandard = createCategory("Standard", "Defaultbeschreibung");
 
 if (!getCategories().find(cat => cat.name === "Standard")) {
     storeCategoryToDB(categoryStandard);
 };
+
+
 
 //Eventlistener
 $appWrapper.addEventListener("change", (event) => {
@@ -36,6 +39,14 @@ $appWrapper.addEventListener("click", (event) => {
         renderNewCategoryInput();
         document.querySelector(".newCategoryInput").focus();
     };
+
+    //Change current Category
+    if(event.target.matches(".sidebarCategory") && !event.target.matches(".current")) {
+        currentCategory = event.target.textContent;
+        renderCategories();
+        renderTasks(currentCategory);
+    }
+    
 });
 
 $appWrapper.addEventListener("keydown", (event) => {
@@ -55,6 +66,16 @@ $appWrapper.addEventListener("keydown", (event) => {
         renderCategories();
     }
 });
+
+//Functions
+
+export function getCurrentCategory() {
+    return currentCategory;
+}
+
+export function setCurrentCategory(category) {
+    currentCategory = categoryStandard;
+}
 
 
 //Rendering Page

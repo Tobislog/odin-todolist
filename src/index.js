@@ -5,6 +5,7 @@ import { createCategory, storeCategoryToDB, getCategories , removeCategoryFromDB
 
 //HTML-Variables
 const $appWrapper = document.querySelector(".app");
+const $categoryDetailsModal = document.querySelector("#categoryDetailsModal");
 
 
 //Variables
@@ -51,12 +52,22 @@ $appWrapper.addEventListener("click", (event) => {
         console.log("EL fertig")
     }
 
-    //Category Options
-
+    //Show Category Options
     if (event.target.matches(".categoryOptionButton")) {
-        document.querySelector("#categoryOptionsModal").showModal();
+        $categoryDetailsModal.showModal();
     }
+
+    
 });
+
+$categoryDetailsModal.addEventListener("click", (event) => {
+    //Close Category Options
+    if (event.target.matches("#closeCategoryDetailsButton")) {
+        $categoryDetailsModal.close();
+    };
+
+});
+
 
 $appWrapper.addEventListener("keydown", (event) => {
 

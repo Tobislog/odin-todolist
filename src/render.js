@@ -99,7 +99,7 @@ export function renderTasks (category) {
         
         //adding Checkbox
         const $checkBox = document.createElement("input");
-        $checkBox.type = "checkbox";
+        $checkBox.type = "radio";
         $checkBox.id = task.id;
         $checkBox.classList = "taskCheckbox"
 
@@ -122,7 +122,7 @@ export function renderTasks (category) {
     $newInputLine.classList = "inputLine";
 
     const $newCheckbox = document.createElement("input");
-    $newCheckbox.type = "checkbox";
+    $newCheckbox.type = "radio";
     $newCheckbox.classList = "taskCheckbox";
 
     const $newInput = document.createElement("input");

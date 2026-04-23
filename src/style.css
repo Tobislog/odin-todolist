@@ -13,6 +13,12 @@ h1 {
     padding: 8px;
 }
 
+h2 {
+    color: #dededd;
+    margin: 8px;
+}
+
+
 #categoryOptionsModal {
     border-radius: 16px;
     background-color: #33332f;
@@ -26,6 +32,17 @@ h1 {
     border-radius: 8px;
     background-color: #474643;
     border: none;
+}
+
+#categoryDetailsModal[open]{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#categoryDetailsModal::backdrop{
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
 }
 .app {
     height: 800px;
@@ -51,6 +68,17 @@ h1 {
     display: flex;
     justify-content: flex-end;
     padding-right: 9px;
+}
+
+.categoryDescription{
+    resize: none;
+    background-color: #1e1e1c;
+    height: 90px;
+    width: 300px;
+    color: #dededd;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
 }
 
 .addCategoryButton:hover {
@@ -137,4 +165,10 @@ h1 {
     border: none;
     border-radius: 8px;
     color: #dededd;
+}
+
+.categoryDetailsButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }

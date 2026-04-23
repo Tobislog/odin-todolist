@@ -3,6 +3,7 @@ import { getCurrentCategory, setCurrentCategory } from ".";
 //DOM Variables
 const $categoryList = document.querySelector(".categoryList");
 const $taskList = document.querySelector(".taskList");
+const $modalWrapper = document.querySelector(".modalWrapper");
 
 
 
@@ -134,5 +135,23 @@ export function renderTasks (category) {
     $newInputLine.appendChild($newInput);
     $taskList.appendChild($newInputLine);
     
+}
+
+export function renderCategoryDetailsModal () {
+    const categories = getCategories();
+    const targetedCategory = categories.find(cat => cat.name === getCurrentCategory());
+    $modalWrapper.innerHTML = "";
+
+    const $newModalTitle = document.createElement("h2");
+    $newModalTitle.textContent = getCurrentCategory() + " Details";
+
+    const $newModalDescription = document.createElement("textarea");
+    $newModalDescription.classList.add("categoryDescription");
+    $newModalDescription.textContent = targetedCategory.description;
+
+
+
+    $modalWrapper.appendChild($newModalTitle);
+    $modalWrapper.appendChild($newModalDescription);
 }
 

@@ -7,6 +7,16 @@ export function createCategory (name, description) {
     }
 }
 
+export function updateCategoryDescription (name, newDescription){
+    const categories = JSON.parse(sessionStorage.getItem("categories")) || [];
+    categories.forEach(element => {
+        if (element.name === name) {
+            element.description = newDescription;
+        }
+    });
+    sessionStorage.setItem("categories", JSON.stringify(categories));
+}
+
 export function storeCategoryToDB (category){
     //Storing to LocalStorage for Development
     const categories = JSON.parse(sessionStorage.getItem("categories")) || [];

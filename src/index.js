@@ -1,7 +1,7 @@
 import './style.css';
 import { createTask, storeTaskToDB, removeTaskFromDB } from "./task";
 import { renderCategories, renderTasks, renderNewCategoryInput, renderCurrentCategoryOptions, renderCategoryDetailsModal } from './render';
-import { createCategory, storeCategoryToDB, getCategories , removeCategoryFromDB} from './categories';
+import { createCategory, storeCategoryToDB, getCategories , removeCategoryFromDB, updateCategoryDescription} from './categories';
 
 //HTML-Variables
 const $appWrapper = document.querySelector(".app");
@@ -56,6 +56,7 @@ $appWrapper.addEventListener("click", (event) => {
     if (event.target.matches(".categoryOptionButton")) {
         renderCategoryDetailsModal();
         $categoryDetailsModal.showModal();
+
     }
 
     
@@ -69,14 +70,8 @@ $categoryDetailsModal.addEventListener("click", (event) => {
 
     //Save Category Options
     if (event.target.matches("#saveCategoryDetailsButton")) {
-
-        //WIP!
-
-        const categories = getCategories();
-        const targetedCategory = categories.find(cat => cat.name === currentCategory);
-
-        targetedCategory.description = $categoryDetailsModal.querySelector("textarea").textContent;
-        storeCategoryToDB(targetedCategory);
+        const newDescription = $categoryDetailsModal.querySelector("textarea").value;
+        updateCategoryDescription(currentCategory, newDescription);
         $categoryDetailsModal.close();
 
     }

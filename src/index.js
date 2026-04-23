@@ -1,11 +1,12 @@
 import './style.css';
-import { createTask, storeTaskToDB, removeTaskFromDB } from "./task";
-import { renderCategories, renderTasks, renderNewCategoryInput, renderCurrentCategoryOptions, renderCategoryDetailsModal } from './render';
+import { createTask, updateTask, storeTaskToDB, removeTaskFromDB } from "./task";
+import { renderCategories, renderTasks, renderNewCategoryInput, renderCurrentCategoryOptions, renderCategoryDetailsModal, renderTaskDetailsModal } from './render';
 import { createCategory, storeCategoryToDB, getCategories , removeCategoryFromDB, updateCategoryDescription} from './categories';
 
 //HTML-Variables
 const $appWrapper = document.querySelector(".app");
 const $categoryDetailsModal = document.querySelector("#categoryDetailsModal");
+const $taskDetailsModal = document.querySelector("#taskDetailsModal");
 
 
 //Variables
@@ -59,6 +60,13 @@ $appWrapper.addEventListener("click", (event) => {
 
     }
 
+    //Show Task Options
+    if (event.target.matches(".taskTitle")) {
+        const TaskId = event.target.previousElementSibling.id; //proved!
+        renderTaskDetailsModal(TaskId);
+        $taskDetailsModal.showModal();
+    }
+
     
 });
 
@@ -75,9 +83,22 @@ $categoryDetailsModal.addEventListener("click", (event) => {
         $categoryDetailsModal.close();
 
     }
-
-
 });
+
+$taskDetailsModal.addEventListener("click", (event) => {
+    //Close Task Options
+    if (event.target.matches("#closeTaskDetailsButton")) {
+        $taskDetailsModal.close();
+    }
+
+    //Save Task Options
+    if (event.target.matches("#saveTaskDetailsButton")) {
+        const newDescription = $taskDetailsModal.querySelector("textarea").value;
+        const taskId = $taskDetailsModal.querySelector(".taskDescription").id;
+        updateTask(taskId, newDescription);
+        $taskDetailsModal.close();
+    }
+})
 
 
 $appWrapper.addEventListener("keydown", (event) => {

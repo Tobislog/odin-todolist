@@ -3,7 +3,8 @@ import { getCurrentCategory, setCurrentCategory } from ".";
 //DOM Variables
 const $categoryList = document.querySelector(".categoryList");
 const $taskList = document.querySelector(".taskList");
-const $modalWrapper = document.querySelector(".modalWrapper");
+const $categoryModalWrapper = document.querySelector(".categoryModalWrapper");
+const $taskModalWrapper = document.querySelector(".taskModalWrapper");
 
 
 
@@ -140,7 +141,7 @@ export function renderTasks (category) {
 export function renderCategoryDetailsModal () {
     const categories = getCategories();
     const targetedCategory = categories.find(cat => cat.name === getCurrentCategory());
-    $modalWrapper.innerHTML = "";
+    $categoryModalWrapper.innerHTML = "";
 
     const $newModalTitle = document.createElement("h2");
     $newModalTitle.textContent = getCurrentCategory() + " Details";
@@ -151,7 +152,30 @@ export function renderCategoryDetailsModal () {
 
 
 
-    $modalWrapper.appendChild($newModalTitle);
-    $modalWrapper.appendChild($newModalDescription);
+    $categoryModalWrapper.appendChild($newModalTitle);
+    $categoryModalWrapper.appendChild($newModalDescription);
+}
+
+export function renderTaskDetailsModal (taskId) {
+    //find Task from ID
+    const categories = getCategories();
+    const targetedCategory = categories.find(cat => cat.name === getCurrentCategory());
+    const targetedTask = targetedCategory.tasks.find(task => task.id === taskId);
+
+    //Clear old DOM Elements
+    $taskModalWrapper.innerHTML = "";
+
+    const $newModalTitle = document.createElement("h2");
+    $newModalTitle.textContent = targetedTask.title + " Details";
+
+    const $newModalDescription = document.createElement("textarea");
+    $newModalDescription.classList.add("taskDescription");
+    $newModalDescription.id = taskId;
+    $newModalDescription.textContent = targetedTask.description;
+
+    $taskModalWrapper.appendChild($newModalTitle);
+    $taskModalWrapper.appendChild($newModalDescription);
+
+
 }
 

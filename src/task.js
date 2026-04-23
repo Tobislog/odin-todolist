@@ -1,4 +1,5 @@
-import { createCategory, storeCategoryToDB } from "./categories";
+import { createCategory, getCategories, storeCategoryToDB } from "./categories";
+import { getCurrentCategory } from ".";
 
 export function createTask(title, description, dueDate, priority) {
     return {
@@ -9,6 +10,21 @@ export function createTask(title, description, dueDate, priority) {
         priority: priority
     }
 };
+
+export function updateTask (taskId, newDescription) {
+    const categories = getCategories();
+    for (const cat of categories) {
+        const task = cat.tasks.find(task => task.id === taskId);
+        if (task) {
+            task.description = newDescription;
+            sessionStorage.setItem("categories", JSON.stringify(categories));
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 export function storeTaskToDB(task, category) {
     //Storing to SessionStorage for Development

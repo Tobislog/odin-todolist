@@ -95,8 +95,26 @@ $taskDetailsModal.addEventListener("click", (event) => {
     if (event.target.matches("#saveTaskDetailsButton")) {
         const newDescription = $taskDetailsModal.querySelector("textarea").value;
         const taskId = $taskDetailsModal.querySelector(".taskDescription").id;
-        updateTask(taskId, newDescription);
+        const currentDetailsDate = $taskDetailsModal.querySelector(".taskDatePicker").value;
+        let newDate = "";
+
+        //get current Task
+        const categories = getCategories().flatMap(cat => cat.tasks);
+        const targetedTask = categories.find(task=> task.id === taskId);
+
+        //Prove, if the dueDate has changed, and update newDate Variable to store new Date
+        if (currentDetailsDate !== targetedTask.dueDate) {
+            newDate = currentDetailsDate;
+        }
+
+        updateTask(taskId, newDescription, newDate);
         $taskDetailsModal.close();
+    }
+    //activate dueDate option
+    if (event.target.matches(".taskDateCheckbox")){
+        const newDate = $taskDetailsModal.querySelector(".taskDatePicker").value;
+        const taskId = $taskDetailsModal.querySelector(".taskDescription").id;
+        updateTask(taskId, "", newDate);
     }
 })
 

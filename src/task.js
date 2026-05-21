@@ -11,12 +11,17 @@ export function createTask(title, description, dueDate, priority) {
     }
 };
 
-export function updateTask (taskId, newDescription) {
+export function updateTask (taskId, newDescription, newDate) {
     const categories = getCategories();
     for (const cat of categories) {
         const task = cat.tasks.find(task => task.id === taskId);
         if (task) {
-            task.description = newDescription;
+            if (newDescription != "") {
+                task.description = newDescription;
+            }
+            if (newDate != "") {
+                task.dueDate = newDate;
+            }
             sessionStorage.setItem("categories", JSON.stringify(categories));
             return true;
         }

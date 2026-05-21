@@ -185,6 +185,9 @@ export function renderTaskDetailsModal (taskId) {
     const $newModalDateCheckbox = document.createElement("input");
     $newModalDateCheckbox.setAttribute("type", "radio");
     $newModalDateCheckbox.classList.add("taskDateCheckbox");
+    if (targetedTask.dueDate !== ""){
+        $newModalDateCheckbox.checked = true;
+    }
     $newModalDateWrapper.appendChild($newModalDateCheckbox);
 
     const $newModalDateText = document.createElement("div");
@@ -195,8 +198,15 @@ export function renderTaskDetailsModal (taskId) {
     const $newModalDate = document.createElement("input");
     $newModalDate.classList.add("taskDatePicker");
     $newModalDate.setAttribute("type", "datetime-local");
-    $newModalDate.value = defaultTime;
-    $newModalDate.min = defaultTime;
+
+    if (targetedTask.dueDate == "") {
+        $newModalDate.value = defaultTime;
+        $newModalDate.min = defaultTime;
+        console.log("Date war leer!")
+    } else {
+        $newModalDate.value = targetedTask.dueDate;
+        $newModalDate.min = targetedTask.dueDate;
+    }
     $newModalDateWrapper.appendChild($newModalDate);
 
     $taskModalWrapper.appendChild($newModalTitle);

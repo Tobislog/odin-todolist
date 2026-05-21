@@ -157,6 +157,11 @@ export function renderCategoryDetailsModal () {
 }
 
 export function renderTaskDetailsModal (taskId) {
+    const now = new Date();
+    now.setHours(now.getHours() +1);
+    const defaultTime = now.toLocaleString("sv-SE").replace(" ", "T").slice(0, 16);
+
+
     //find Task from ID
     const categories = getCategories();
     const targetedCategory = categories.find(cat => cat.name === getCurrentCategory());
@@ -164,17 +169,39 @@ export function renderTaskDetailsModal (taskId) {
 
     //Clear old DOM Elements
     $taskModalWrapper.innerHTML = "";
-
+    //add Title
     const $newModalTitle = document.createElement("h2");
     $newModalTitle.textContent = targetedTask.title + " Details";
-
+    //add Description-Textbox
     const $newModalDescription = document.createElement("textarea");
     $newModalDescription.classList.add("taskDescription");
     $newModalDescription.id = taskId;
     $newModalDescription.textContent = targetedTask.description;
 
+    //Add Due-Date/Time-Selection
+    const $newModalDateWrapper = document.createElement("div");
+    $newModalDateWrapper.classList.add("taskDateWrapper");
+
+    const $newModalDateCheckbox = document.createElement("input");
+    $newModalDateCheckbox.setAttribute("type", "radio");
+    $newModalDateCheckbox.classList.add("taskDateCheckbox");
+    $newModalDateWrapper.appendChild($newModalDateCheckbox);
+
+    const $newModalDateText = document.createElement("div");
+    $newModalDateText.classList.add("taskDateText");
+    $newModalDateText.textContent = "Fällig am: ";
+    $newModalDateWrapper.appendChild($newModalDateText);
+
+    const $newModalDate = document.createElement("input");
+    $newModalDate.classList.add("taskDatePicker");
+    $newModalDate.setAttribute("type", "datetime-local");
+    $newModalDate.value = defaultTime;
+    $newModalDate.min = defaultTime;
+    $newModalDateWrapper.appendChild($newModalDate);
+
     $taskModalWrapper.appendChild($newModalTitle);
     $taskModalWrapper.appendChild($newModalDescription);
+    $taskModalWrapper.appendChild($newModalDateWrapper);
 
 
 }

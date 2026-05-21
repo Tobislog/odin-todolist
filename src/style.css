@@ -27,8 +27,8 @@ h2 {
 }
 
 #categoryDetailsModal, #taskDetailsModal{
-    height: 200px;
-    width: 350px;
+    height: 300px;
+    width: 450px;
     border-radius: 8px;
     background-color: #474643;
     border: none;
@@ -74,7 +74,7 @@ h2 {
     resize: none;
     background-color: #1e1e1c;
     height: 90px;
-    width: 300px;
+    width: 435px;
     color: #dededd;
     border: none;
     border-radius: 8px;
@@ -161,6 +161,10 @@ h2 {
 
 }
 
+.taskDateCheckbox {
+    vertical-align: middle;
+}
+
 .newTaskInput {
     width: 700px;
     font-family: "Comfortaa", sans-serif;
@@ -179,4 +183,16 @@ h2 {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
+}
+
+.taskDateWrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #dededd;
+    margin: 8px;
+}
+
+.taskDateCheckbox {
+
 }

@@ -143,9 +143,14 @@ h2 {
 
 .taskLine {
     display: flex;
+    gap: 20px;
     align-items: center;
     height: 32px;
 
+}
+
+.taskDate {
+    color: #63635d;
 }
 
 .inputLine {
@@ -154,11 +159,7 @@ h2 {
     align-items: center;
     flex-direction: row;
     justify-content: flex-start;
-}
-
-.taskCheckbox {
-    margin-right: 16px;
-
+    gap: 20px;
 }
 
 .taskDateCheckbox {

@@ -108,6 +108,7 @@ $taskDetailsModal.addEventListener("click", (event) => {
         }
 
         updateTask(taskId, newDescription, newDate);
+        renderTasks(currentCategory);
         $taskDetailsModal.close();
     }
     //activate dueDate option
@@ -123,6 +124,7 @@ $taskDetailsModal.addEventListener("click", (event) => {
             updateTask(taskId, "", "");
             console.log("Date removed");
         }
+        renderTasks(currentCategory);
     }
 })
 

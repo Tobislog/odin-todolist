@@ -113,6 +113,29 @@ export function renderTasks (category) {
         //add Elements to DOM
         $newTaskLine.appendChild($checkBox);
         $newTaskLine.appendChild($taskTitle);
+
+
+        //adding Date if selected
+        if (task.dueDate !== ""){
+            const dateString = task.dueDate;
+            const date = new Date(dateString);
+            const formatter = new Intl.DateTimeFormat('de-DE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            }); 
+            const germanDate = `${formatter.format(date)} Uhr`;
+
+
+            const $taskDate = document.createElement("div");
+            $taskDate.classList.add("taskDate");
+            $taskDate.textContent = germanDate;
+            $newTaskLine.appendChild($taskDate);
+        }
+
         $taskList.appendChild($newTaskLine);
 
 

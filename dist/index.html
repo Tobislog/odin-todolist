@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Template</title>
+    <title>Odin's To Do List</title>
 <script defer src="main.js"></script></head>
 <body>
-    <p>This is a Webpack template</p>
+    <main class="app">
+        <div class="sidebar">
+            <h1>To Do</h1>
+            <div class="categoryMenu">
+                <div class="addCategoryButton">+</div>
+            </div>
+            <div class="categoryList">
+            </div>
+        </div>
+        <div class="taskContent">
+            <div class="navTop">
+            </div>
+            <div class="taskList">
+                
+            </div>
+        </div>
+    </main>
+    <dialog id="categoryDetailsModal">
+        <div class="categoryModalWrapper">
+            
+        </div>
+        <div class="categoryDetailsButtonWrapper">
+            <button class="categoryDetailsButton" id="saveCategoryDetailsButton">Save</button>
+            <button class="categoryDetailsButton" id="closeCategoryDetailsButton">Schließen</button>
+        </div>
+    </dialog>
+    <dialog id="taskDetailsModal">
+        <div class="taskModalWrapper">
+            
+        </div>
+        <div class="categoryDetailsButtonWrapper">
+            <button class="categoryDetailsButton" id="saveTaskDetailsButton">Save</button>
+            <button class="categoryDetailsButton" id="closeTaskDetailsButton">Schließen</button>
+        </div>
+    </dialog>
 </body>
 </html>

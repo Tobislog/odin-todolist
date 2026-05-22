@@ -112,9 +112,17 @@ $taskDetailsModal.addEventListener("click", (event) => {
     }
     //activate dueDate option
     if (event.target.matches(".taskDateCheckbox")){
+        console.log(event.target.checked);
         const newDate = $taskDetailsModal.querySelector(".taskDatePicker").value;
         const taskId = $taskDetailsModal.querySelector(".taskDescription").id;
-        updateTask(taskId, "", newDate);
+        if (event.target.checked) {
+            updateTask(taskId, "", newDate);
+            console.log("new Date updated");
+        }
+        if (!event.target.checked){
+            updateTask(taskId, "", "");
+            console.log("Date removed");
+        }
     }
 })
 

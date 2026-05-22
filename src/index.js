@@ -96,32 +96,34 @@ $taskDetailsModal.addEventListener("click", (event) => {
         const newDescription = $taskDetailsModal.querySelector("textarea").value;
         const taskId = $taskDetailsModal.querySelector(".taskDescription").id;
         const currentDetailsDate = $taskDetailsModal.querySelector(".taskDatePicker").value;
-        let newDate = "";
+        const checkboxChecked = $taskDetailsModal.querySelector(".taskDateCheckbox").checked;
+        const taskUpdatesObject = {description: newDescription};
 
         //get current Task
         const categories = getCategories().flatMap(cat => cat.tasks);
         const targetedTask = categories.find(task=> task.id === taskId);
 
         //Prove, if the dueDate has changed, and update newDate Variable to store new Date
-        if (currentDetailsDate !== targetedTask.dueDate) {
-            newDate = currentDetailsDate;
+        if (checkboxChecked && (currentDetailsDate !== targetedTask.dueDate)) {
+            taskUpdatesObject.dueDate = currentDetailsDate;
         }
-
-        updateTask(taskId, newDescription, newDate);
+        console.log(taskUpdatesObject);
+        updateTask(taskId, taskUpdatesObject);
         renderTasks(currentCategory);
         $taskDetailsModal.close();
     }
+    
     //activate dueDate option
     if (event.target.matches(".taskDateCheckbox")){
         console.log(event.target.checked);
         const newDate = $taskDetailsModal.querySelector(".taskDatePicker").value;
         const taskId = $taskDetailsModal.querySelector(".taskDescription").id;
         if (event.target.checked) {
-            updateTask(taskId, "", newDate);
+            updateTask(taskId, {dueDate: newDate});
             console.log("new Date updated");
         }
         if (!event.target.checked){
-            updateTask(taskId, "", "");
+            updateTask(taskId, {dueDate: ""});
             console.log("Date removed");
         }
         renderTasks(currentCategory);

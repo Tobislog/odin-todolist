@@ -2,7 +2,7 @@ name: Deploy Static Content
 
 on:
   push:
-    branches: ["main"] # Oder "master", je nachdem wie dein Haupt-Branch heißt
+    branches: ["main"] # Falls dein Hauptbranch "master" heißt, hier anpassen
 
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps: -- deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }} # <-- Hier lag der Fehler (Punkte statt Doppelpunkt und Striche)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,7 +29,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # HIER sagst du GitHub, welchen Ordner es nehmen soll!
           path: './dist'
           
       - name: Deploy to GitHub Pages

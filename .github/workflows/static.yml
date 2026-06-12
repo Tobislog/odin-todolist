@@ -1,0 +1,37 @@
+name: Deploy Static Content
+
+on:
+  push:
+    branches: ["main"] # Oder "master", je nachdem wie dein Haupt-Branch heißt
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps: -- deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      # FALLS du ein Framework nutzt (Vite, React, etc.), aktiviere diese zwei Zeilen (Raute entfernen):
+      # - run: npm ci && npm run build 
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # HIER sagst du GitHub, welchen Ordner es nehmen soll!
+          path: './dist'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
